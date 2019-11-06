@@ -1,0 +1,158 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Webslesson Tutorial | Search HTML Table Data by using JQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #result {
+            position: absolute;
+            width: 100%;
+            max-width: 870px;
+            cursor: pointer;
+            overflow-y: auto;
+            max-height: 400px;
+            box-sizing: border-box;
+            z-index: 1001;
+        }
+
+        .link-class:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <br /><br />
+    <div class="container" style="width:900px;">
+        <h2 align="center">JSON Live Data Search using Ajax JQuery</h2>
+        <h3 align="center">Employee Data</h3>
+        <br /><br />
+        <div align="center">
+            <input type="text" name="search" id="search" placeholder="Search Employee Details" class="form-control" />
+        </div>
+        <ul class="list-group" id="result"></ul>
+        <br />
+    </div>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            cache: false
+        });
+        $('#search').keyup(function () {
+            $('#result').html('');
+            $('#state').val('');
+            var searchField = $('#search').val();
+            var expression = new RegExp(searchField, "i");
+            $.getJSON('data.json', function (data) {
+                $.each(data, function (key, value) {
+                    if (value.name.search(expression) != -1 || value.location.search(
+                            expression) != -1) {
+                        $('#result').append(
+                            '<li class="list-group-item link-class"><img src="' +
+                            value.image +
+                            '" height="40" width="40" class="img-thumbnail" /> ' +
+                            value.name + ' | <span class="text-muted">' + value
+                            .location + '</span></li>');
+                    }
+                });
+            });
+        });
+
+        $('#result').on('click', 'li', function () {
+            var click_text = $(this).text().split('|');
+            $('#search').val($.trim(click_text[0]));
+            $("#result").html('');
+        });
+    });
+</script> -->
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Creating Search Bar using HTML
+        CSS and Javascript
+    </title>
+
+    <style>
+        #searchbar {
+            margin-left: 15%;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        input[type=text] {
+            width: 30%;
+            -webkit-transition: width 0.15s ease-in-out;
+            transition: width 0.15s ease-in-out;
+        }
+
+        /* When the input field gets focus, 
+        change its width to 100% */
+        input[type=text]:focus {
+            width: 70%;
+        }
+
+        #list {
+            font-size: 1.5em;
+            margin-left: 90px;
+        }
+
+        .animals {
+            display: list-item;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- input tag -->
+    <input id="searchbar" onkeyup="search_animal()" type="text" name="search" placeholder="Search animals..">
+
+    <!-- ordered list -->
+    <ol id='list'>
+        <li class="animals">Cat</li>
+        <li class="animals">Dog</li>
+        <li class="animals">Elephant</li>
+        <li class="animals">Fish</li>
+        <li class="animals">Gorilla</li>
+        <li class="animals">Monkey</li>
+        <li class="animals">Turtle</li>
+        <li class="animals">Whale</li>
+        <li class="animals">Aligator</li>
+        <li class="animals">Donkey</li>
+        <li class="animals">Horse</li>
+    </ol>
+
+
+
+    <script>
+        function search_animal() {
+            let input = document.getElementById('searchbar').value
+            input = input.toLowerCase();
+            let x = document.getElementsByClassName('animals');
+
+            for (i = 0; i < x.length; i++) {
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display = "none";
+                } else {
+                    x[i].style.display = "list-item";
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
